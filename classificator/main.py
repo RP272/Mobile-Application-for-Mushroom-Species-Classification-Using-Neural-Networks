@@ -7,9 +7,11 @@ from torchvision import datasets, transforms
 import numpy as np
 import os
 from tqdm.auto import tqdm
+import utils
 
 # Setup device-agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
+print(device)
 
 def train_step(model: torch.nn.Module, 
                dataloader: torch.utils.data.DataLoader, 
@@ -23,6 +25,7 @@ def train_step(model: torch.nn.Module,
     
     # Loop through data loader data batches
     for batch, (X, y) in enumerate(dataloader):
+        print(batch)
         # Send data to target device
         X, y = X.to(device), y.to(device)
 
@@ -123,13 +126,14 @@ def train(model: torch.nn.Module,
         results["train_acc"].append(train_acc.item() if isinstance(train_acc, torch.Tensor) else train_acc)
         results["test_loss"].append(test_loss.item() if isinstance(test_loss, torch.Tensor) else test_loss)
         results["test_acc"].append(test_acc.item() if isinstance(test_acc, torch.Tensor) else test_acc)
+        utils.save_model(model, "models", "MobileNetV4-Mushroom.pth")
 
     # 6. Return the filled results at the end of the epochs
     return results
 
 def main():
-    BATCH_SIZE = 32
-    NUM_WORKERS = os.cpu_count()
+    BATCH_SIZE = 512
+    NUM_WORKERS = 4
 
     dataset_dir = "mushroom-dataset/"
 
@@ -205,7 +209,7 @@ def main():
     torch.cuda.manual_seed(42)
 
     # Set number of epochs
-    NUM_EPOCHS = 5
+    NUM_EPOCHS = 10
 
     model = model.to(device)
 
