@@ -132,19 +132,23 @@ def train(model: torch.nn.Module,
     return results
 
 def main():
-    BATCH_SIZE = 512
+    BATCH_SIZE = 128
     NUM_WORKERS = 4
 
     dataset_dir = "mushroom-dataset/"
-
 
     model = timm.create_model(
         'mobilenetv4_conv_small.e2400_r224_in1k',
         pretrained=True,
         num_classes=100,
     )
-    model.train()
 
+    model.classifier = nn.Sequential(
+        nn.Dropout(p=0.0003766954376418089),         
+        nn.Linear(1280, 100)
+    )
+    model.train()
+ 
     # get model specific transforms (normalization, resize)
     data_config = timm.data.resolve_model_data_config(model)
     transforms = timm.data.create_transform(**data_config, is_training=False)
@@ -180,42 +184,46 @@ def main():
         shuffle=False
     )
 
-    # img, label = next(iter(train_dataloader))
+    # # img, label = next(iter(train_dataloader))
 
-    # # Batch size will now be 1, try changing the batch_size parameter above and see what happens
-    # print(f"Image shape: {img.shape} -> [batch_size, color_channels, height, width]")
-    # print(f"Label shape: {label.shape}")
+    # # # Batch size will now be 1, try changing the batch_size parameter above and see what happens
+    # # print(f"Image shape: {img.shape} -> [batch_size, color_channels, height, width]")
+    # # print(f"Label shape: {label.shape}")
 
-    # # 1. Get a batch of images and labels from the DataLoader
-    # img_batch, label_batch = next(iter(train_dataloader))
+    # # # 1. Get a batch of images and labels from the DataLoader
+    # # img_batch, label_batch = next(iter(train_dataloader))
 
-    # # 2. Get a single image from the batch and unsqueeze the image so its shape fits the model
-    # img_single, label_single = img_batch[0].unsqueeze(dim=0), label_batch[0]
-    # print(f"Single image shape: {img_single.shape}\n")
+    # # # 2. Get a single image from the batch and unsqueeze the image so its shape fits the model
+    # # img_single, label_single = img_batch[0].unsqueeze(dim=0), label_batch[0]
+    # # print(f"Single image shape: {img_single.shape}\n")
 
-    # # 3. Perform a forward pass on a single image
-    # model.eval()
-    # with torch.inference_mode():
-    #     pred = model(img_single.to(device))
+    # # # 3. Perform a forward pass on a single image
+    # # model.eval()
+    # # with torch.inference_mode():
+    # #     pred = model(img_single.to(device))
         
-    # # 4. Print out what's happening and convert model logits -> pred probs -> pred label
-    # print(f"Output logits:\n{pred}\n")
-    # print(f"Output prediction probabilities:\n{torch.softmax(pred, dim=1)}\n")
-    # print(f"Output prediction label:\n{torch.argmax(torch.softmax(pred, dim=1), dim=1)}\n")
-    # print(f"Actual label:\n{label_single}")
+    # # # 4. Print out what's happening and convert model logits -> pred probs -> pred label
+    # # print(f"Output logits:\n{pred}\n")
+    # # print(f"Output prediction probabilities:\n{torch.softmax(pred, dim=1)}\n")
+    # # print(f"Output prediction label:\n{torch.argmax(torch.softmax(pred, dim=1), dim=1)}\n")
+    # # print(f"Actual label:\n{label_single}")
 
     # Set random seeds
     torch.manual_seed(42) 
     torch.cuda.manual_seed(42)
 
     # Set number of epochs
-    NUM_EPOCHS = 10
+    NUM_EPOCHS = 30
 
     model = model.to(device)
 
     # Setup loss function and optimizer
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(params=model.parameters(), lr=0.001)
+    optimizer = torch.optim.Adam(
+        params=model.parameters(), 
+        lr=9.960352403654376e-05, 
+        weight_decay=2.206030110849018e-05
+    )
 
     # Start the timer
     from timeit import default_timer as timer 
