@@ -2,12 +2,14 @@ import torch
 from torch import nn
 import timm
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from torch.utils.data import DataLoader, Subset, random_split, Dataset
 from torchvision import datasets, transforms
 import numpy as np
 import os
 from tqdm.auto import tqdm
 import utils
+import matplotlib.pyplot as plt
 
 # Setup device-agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -63,13 +65,15 @@ def test_step(model: torch.nn.Module,
     # Setup test loss and test accuracy values
     test_loss, test_acc = 0, 0
     
-    # Turn on inference context manager
+    # Turn on inference context 
+    y_test = []
+    predictions = []
     with torch.inference_mode():
         # Loop through DataLoader batches
         for batch, (X, y) in enumerate(dataloader):
             # Send data to target device
+            y_test.append(y)
             X, y = X.to(device), y.to(device)
-    
             # 1. Forward pass
             test_pred_logits = model(X)
 
@@ -79,12 +83,13 @@ def test_step(model: torch.nn.Module,
             
             # Calculate and accumulate accuracy
             test_pred_labels = test_pred_logits.argmax(dim=1)
+            predictions.append(test_pred_labels)
             test_acc += ((test_pred_labels == y).sum().item()/len(test_pred_labels))
             
     # Adjust metrics to get average loss and accuracy per batch 
     test_loss = test_loss / len(dataloader)
     test_acc = test_acc / len(dataloader)
-    return test_loss, test_acc
+    return test_loss, test_acc, y_test, predictions
 
 # 1. Take in various parameters required for training and test steps
 def train(model: torch.nn.Module, 
@@ -107,7 +112,7 @@ def train(model: torch.nn.Module,
                                            dataloader=train_dataloader,
                                            loss_fn=loss_fn,
                                            optimizer=optimizer)
-        test_loss, test_acc = test_step(model=model,
+        test_loss, test_acc, y_test, predictions = test_step(model=model,
             dataloader=test_dataloader,
             loss_fn=loss_fn)
         
@@ -128,7 +133,13 @@ def train(model: torch.nn.Module,
         results["test_acc"].append(test_acc.item() if isinstance(test_acc, torch.Tensor) else test_acc)
         utils.save_model(model, "models", "MobileNetV4-Mushroom.pth")
 
-    # 6. Return the filled results at the end of the epochs
+        # 6. Plot the confusion matrix for epoch
+        cm = confusion_matrix(y_test, predictions)
+        ConfusionMatrixDisplay(cm).plot()
+        plt.show()
+
+
+    # 7. Return the filled results at the end of the epochs
     return results
 
 def main():

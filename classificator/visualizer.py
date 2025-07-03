@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import timm
 from pathlib import Path
 import torch
+from torch import nn
 import torchvision
 from typing import List
-
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -98,7 +98,11 @@ if __name__ == "__main__":
         pretrained=False,  # Start with random weights, since you'll load your own
         num_classes=100
     )
-    checkpoint = torch.load("runs/512batch-10epoch-adam0.001/MobileNetV4-Mushroom.pth", map_location=device)
+    model.classifier = nn.Sequential(
+        nn.Dropout(p=0.0),
+        nn.Linear(1280, 100)
+    )
+    checkpoint = torch.load("runs/128batch-10epoch-adam9.96e-05/MobileNetV4-MushroomEpoch12-84acc.pth", map_location=device)
     model.load_state_dict(checkpoint)
     model.eval()
     
@@ -119,7 +123,7 @@ if __name__ == "__main__":
     #                     transform=transforms, 
     #                     n=3)
     pred_and_plot_image(model=model,
-                    image_path="maslak1.jpg",
+                    image_path="images/rydz3.jpg",
                     class_names=class_names,
                     transform=transforms,
                     device=device)
