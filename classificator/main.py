@@ -11,10 +11,12 @@ from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 import torch
 from pathlib import Path
+from imblearn.under_sampling import RandomUnderSampler
 
 # Setup device-agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
-data_dir = Path("/kaggle/input/mushroom-species/dataset/")
+# data_dir = Path("/kaggle/input/mushroom-species/dataset/")
+data_dir = Path("C:\praca-inzynierska\Mobile-Application-for-Mushroom-Species-Classification-Using-Neural-Networks\classificator\mushroom-dataset")
 
 def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blues, figsize=(10, 8)):
     """
@@ -253,8 +255,26 @@ def main():
     train_dataset = Subset(dataset, train_indices)
     test_dataset = Subset(dataset, test_indices)
 
+    subset_indices = train_dataset.indices  # indices into the full dataset
+    image_paths = [dataset.samples[i][0] for i in subset_indices]
+    labels = [dataset.samples[i][1] for i in subset_indices]
+
+    X = np.array(image_paths).reshape(-1, 1)
+    y = np.array(labels)
+
+    rus = RandomUnderSampler(random_state=42)
+    X_resampled, y_resampled = rus.fit_resample(X, y)
+
+    # Flatten back to list
+    resampled_image_paths = X_resampled.ravel().tolist()
+    image_path_to_index = {dataset.samples[i][0]: i for i in subset_indices}
+
+    # Use this to get new indices
+    resampled_indices = [image_path_to_index[path] for path in resampled_image_paths]
+    undersampled_train_dataset = Subset(dataset, resampled_indices)
+    
     train_dataloader = DataLoader(
-        dataset=train_dataset,
+        dataset=undersampled_train_dataset,
         batch_size=BATCH_SIZE,
         num_workers=NUM_WORKERS,
         shuffle=True
@@ -267,6 +287,15 @@ def main():
         shuffle=False
     )
 
+    all_labels = []
+
+    for _, labels in train_dataloader:
+        all_labels.extend(labels.tolist())
+
+    label_counts = np.bincount(all_labels)
+
+    for class_idx, count in enumerate(label_counts):
+        print(f"Class {class_idx}: {count} images")
     # # img, label = next(iter(train_dataloader))
 
     # # # Batch size will now be 1, try changing the batch_size parameter above and see what happens
