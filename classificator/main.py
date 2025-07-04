@@ -2,18 +2,81 @@ import torch
 from torch import nn
 import timm
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 from torch.utils.data import DataLoader, Subset, random_split, Dataset
 from torchvision import datasets, transforms
 import numpy as np
 import os
 from tqdm.auto import tqdm
-import utils
 import matplotlib.pyplot as plt
+import torch
+from pathlib import Path
 
 # Setup device-agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(device)
+data_dir = Path("/kaggle/input/mushroom-species/dataset/")
+
+def plot_confusion_matrix(cm, classes, title='Confusion Matrix', cmap=plt.cm.Blues, figsize=(10, 8)):
+    """
+    This function plots a confusion matrix.
+
+    Parameters:
+        cm (array-like): Confusion matrix as returned by sklearn.metrics.confusion_matrix.
+        classes (list): List of class names, e.g., ['Class 0', 'Class 1'].
+        title (str): Title for the plot.
+        cmap (matplotlib colormap): Colormap for the plot.
+    """
+    # Create a figure with a specified size
+    plt.figure(figsize=figsize)
+    
+    # Display the confusion matrix as an image with a colormap
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+
+    # Define tick marks and labels for the classes on the axes
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=90)
+    plt.yticks(tick_marks, classes)
+
+    # Label the axes
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+
+    # Ensure the plot layout is tight
+    plt.tight_layout()
+    # Display the plot
+    plt.show()
+
+def save_model(model: torch.nn.Module,
+               target_dir: str,
+               model_name: str):
+  """Saves a PyTorch model to a target directory.
+
+  Args:
+    model: A target PyTorch model to save.
+    target_dir: A directory for saving the model to.
+    model_name: A filename for the saved model. Should include
+      either ".pth" or ".pt" as the file extension.
+
+  Example usage:
+    save_model(model=model_0,
+               target_dir="models",
+               model_name="05_going_modular_tingvgg_model.pth")
+  """
+  # Create target directory
+  target_dir_path = Path(target_dir)
+  target_dir_path.mkdir(parents=True,
+                        exist_ok=True)
+
+  # Create model save path
+  assert model_name.endswith(".pth") or model_name.endswith(".pt"), "model_name should end with '.pt' or '.pth'"
+  model_save_path = target_dir_path / model_name
+
+  # Save the model state_dict()
+  print(f"[INFO] Saving model to: {model_save_path}")
+  torch.save(obj=model.state_dict(),
+             f=model_save_path)
 
 def train_step(model: torch.nn.Module, 
                dataloader: torch.utils.data.DataLoader, 
@@ -27,7 +90,6 @@ def train_step(model: torch.nn.Module,
     
     # Loop through data loader data batches
     for batch, (X, y) in enumerate(dataloader):
-        print(batch)
         # Send data to target device
         X, y = X.to(device), y.to(device)
 
@@ -58,7 +120,8 @@ def train_step(model: torch.nn.Module,
 
 def test_step(model: torch.nn.Module, 
               dataloader: torch.utils.data.DataLoader, 
-              loss_fn: torch.nn.Module):
+              loss_fn: torch.nn.Module
+              ):
     # Put model in eval mode
     model.eval() 
     
@@ -83,7 +146,7 @@ def test_step(model: torch.nn.Module,
             
             # Calculate and accumulate accuracy
             test_pred_labels = test_pred_logits.argmax(dim=1)
-            predictions.append(test_pred_labels)
+            predictions.append(test_pred_labels.cpu())
             test_acc += ((test_pred_labels == y).sum().item()/len(test_pred_labels))
             
     # Adjust metrics to get average loss and accuracy per batch 
@@ -96,8 +159,10 @@ def train(model: torch.nn.Module,
           train_dataloader: torch.utils.data.DataLoader, 
           test_dataloader: torch.utils.data.DataLoader, 
           optimizer: torch.optim.Optimizer,
+          classes,
           loss_fn: torch.nn.Module = nn.CrossEntropyLoss(),
-          epochs: int = 5):
+          epochs: int = 5,
+          ):
     
     # 2. Create empty results dictionary
     results = {"train_loss": [],
@@ -105,7 +170,9 @@ def train(model: torch.nn.Module,
         "test_loss": [],
         "test_acc": []
     }
-    
+
+    y_global = []
+    predictions_global = []
     # 3. Loop through training and testing steps for a number of epochs
     for epoch in tqdm(range(epochs)):
         train_loss, train_acc = train_step(model=model,
@@ -114,7 +181,8 @@ def train(model: torch.nn.Module,
                                            optimizer=optimizer)
         test_loss, test_acc, y_test, predictions = test_step(model=model,
             dataloader=test_dataloader,
-            loss_fn=loss_fn)
+            loss_fn=loss_fn,
+        )
         
         # 4. Print out what's happening
         print(
@@ -131,12 +199,16 @@ def train(model: torch.nn.Module,
         results["train_acc"].append(train_acc.item() if isinstance(train_acc, torch.Tensor) else train_acc)
         results["test_loss"].append(test_loss.item() if isinstance(test_loss, torch.Tensor) else test_loss)
         results["test_acc"].append(test_acc.item() if isinstance(test_acc, torch.Tensor) else test_acc)
-        utils.save_model(model, "models", "MobileNetV4-Mushroom.pth")
+        save_model(model, "/kaggle/working/", "MobileNetV4-Mushroom.pth")
 
         # 6. Plot the confusion matrix for epoch
-        cm = confusion_matrix(y_test, predictions)
-        ConfusionMatrixDisplay(cm).plot()
-        plt.show()
+        y_test_flat = torch.cat(y_test).cpu().numpy()
+        predictions_flat = torch.cat(predictions).cpu().numpy()
+        y_global = np.concatenate((y_global, y_test_flat))
+        predictions_global = np.concatenate((predictions_global, predictions_flat))
+    cm = confusion_matrix(y_global, predictions_global)
+    plot_confusion_matrix(cm, classes, figsize=(24, 22))
+    print(classification_report(y_global, predictions_global, target_names=classes, digits=4))
 
 
     # 7. Return the filled results at the end of the epochs
@@ -146,7 +218,7 @@ def main():
     BATCH_SIZE = 128
     NUM_WORKERS = 4
 
-    dataset_dir = "mushroom-dataset/"
+    dataset_dir = data_dir
 
     model = timm.create_model(
         'mobilenetv4_conv_small.e2400_r224_in1k',
@@ -224,7 +296,7 @@ def main():
     torch.cuda.manual_seed(42)
 
     # Set number of epochs
-    NUM_EPOCHS = 30
+    NUM_EPOCHS = 3
 
     model = model.to(device)
 
@@ -247,7 +319,8 @@ def main():
                             test_dataloader=test_dataloader,
                             optimizer=optimizer,
                             loss_fn=loss_fn, 
-                            epochs=NUM_EPOCHS)
+                            epochs=NUM_EPOCHS,
+                            classes=dataset.classes)
 
     # End the timer and print out how long it took
     end_time = timer()
