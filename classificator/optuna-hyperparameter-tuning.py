@@ -8,6 +8,8 @@ from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import train_test_split
 from pathlib import Path
 from optuna.exceptions import TrialPruned
+import numpy as np
+from imblearn.under_sampling import RandomUnderSampler
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 data_dir = Path("/kaggle/input/mushroom-species/dataset/")
@@ -47,7 +49,25 @@ def objective(trial):
     train_dataset = Subset(dataset, train_indices)
     test_dataset = Subset(dataset, test_indices)
 
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, num_workers=NUM_WORKERS, shuffle=True)
+    subset_indices = train_dataset.indices  # indices into the full dataset
+    image_paths = [dataset.samples[i][0] for i in subset_indices]
+    labels = [dataset.samples[i][1] for i in subset_indices]
+
+    X = np.array(image_paths).reshape(-1, 1)
+    y = np.array(labels)
+
+    rus = RandomUnderSampler(random_state=42)
+    X_resampled, y_resampled = rus.fit_resample(X, y)
+
+    # Flatten back to list
+    resampled_image_paths = X_resampled.ravel().tolist()
+    image_path_to_index = {dataset.samples[i][0]: i for i in subset_indices}
+
+    # Use this to get new indices
+    resampled_indices = [image_path_to_index[path] for path in resampled_image_paths]
+    undersampled_train_dataset = Subset(dataset, resampled_indices)
+
+    train_loader = DataLoader(undersampled_train_dataset, batch_size=batch_size, num_workers=NUM_WORKERS, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, num_workers=NUM_WORKERS, shuffle=False)
 
     # Optimizer

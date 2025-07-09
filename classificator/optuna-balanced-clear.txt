@@ -1,0 +1,94 @@
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 14:43:49,583] Trial 0 finished with value: 0.2757640369580668 and parameters: {'lr': 0.005547130235985161, 'dropout': 0.05850564759464529, 'weight_decay': 0.0019259661348234151, 'optimizer': 'SGD', 'batch_size': 512}. Best is trial 0 with value: 0.2757640369580668.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 14:54:23,469] Trial 1 finished with value: 0.2769916650513665 and parameters: {'lr': 0.0005287440601412418, 'dropout': 0.017769227063831373, 'weight_decay': 2.8157651390495036e-06, 'optimizer': 'SGD', 'batch_size': 128}. Best is trial 1 with value: 0.2769916650513665.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 15:05:13,686] Trial 2 finished with value: 0.14912450733346255 and parameters: {'lr': 0.0048711196769616934, 'dropout': 0.47772835448966555, 'weight_decay': 3.4571019132100985e-05, 'optimizer': 'SGD', 'batch_size': 256}. Best is trial 1 with value: 0.2769916650513665.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 15:15:57,832] Trial 3 finished with value: 0.044000775344058926 and parameters: {'lr': 0.0013510307995151399, 'dropout': 0.4600672020016393, 'weight_decay': 0.009625160031130026, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 1 with value: 0.2769916650513665.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 15:26:46,005] Trial 4 finished with value: 0.05265878400206758 and parameters: {'lr': 0.002556643441265286, 'dropout': 0.2332481099499221, 'weight_decay': 7.653547417575759e-05, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 1 with value: 0.2769916650513665.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 15:37:38,356] Trial 5 finished with value: 0.21709633649932158 and parameters: {'lr': 0.000856309974311278, 'dropout': 0.16659803017368138, 'weight_decay': 0.0017615357184492815, 'optimizer': 'SGD', 'batch_size': 256}. Best is trial 1 with value: 0.2769916650513665.
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-04 15:42:32,820] Trial 6 pruned. 
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+[I 2025-07-04 15:50:50,298] Trial 7 pruned. 
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 16:01:36,794] Trial 8 finished with value: 0.30987917555081734 and parameters: {'lr': 0.001020567494240111, 'dropout': 0.3865592797857263, 'weight_decay': 0.00040467767329180684, 'optimizer': 'SGD', 'batch_size': 64}. Best is trial 8 with value: 0.30987917555081734.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 16:12:22,860] Trial 9 finished with value: 0.6651805905537249 and parameters: {'lr': 3.8731248964436705e-05, 'dropout': 0.16877604338778365, 'weight_decay': 8.695680252005365e-05, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 9 with value: 0.6651805905537249.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 16:22:56,651] Trial 10 finished with value: 0.5725269755120501 and parameters: {'lr': 2.4619571661371336e-05, 'dropout': 0.5598407068190127, 'weight_decay': 7.661858377863694e-06, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 9 with value: 0.6651805905537249.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 16:33:24,531] Trial 11 finished with value: 0.5548232861665697 and parameters: {'lr': 2.1516272569434043e-05, 'dropout': 0.5756336718890882, 'weight_decay': 8.564188608273693e-06, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 9 with value: 0.6651805905537249.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 16:43:54,238] Trial 12 finished with value: 0.6191122310525295 and parameters: {'lr': 3.320256366065421e-05, 'dropout': 0.5746752949757759, 'weight_decay': 1.84459916251293e-05, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 9 with value: 0.6651805905537249.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 16:54:30,870] Trial 13 finished with value: 0.6886993603411514 and parameters: {'lr': 7.519581391102961e-05, 'dropout': 0.32959686916178615, 'weight_decay': 2.182089080313976e-05, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 13 with value: 0.6886993603411514.
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-04 17:04:56,844] Trial 14 finished with value: 0.6779737675260064 and parameters: {'lr': 8.137908341340346e-05, 'dropout': 0.2992356174227705, 'weight_decay': 0.0003628643740970987, 'optimizer': 'Adam', 'batch_size': 64}. Best is trial 13 with value: 0.6886993603411514.
+Best trial:
+  Accuracy: 0.6887
+  Best hyperparameters:
+    lr: 7.519581391102961e-05
+    dropout: 0.32959686916178615
+    weight_decay: 2.182089080313976e-05
+    optimizer: Adam
+    batch_size: 32
