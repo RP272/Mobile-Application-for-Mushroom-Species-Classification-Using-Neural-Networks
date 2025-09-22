@@ -1,0 +1,130 @@
+[I 2025-07-12 13:35:19,258] A new study created in memory with name: no-name-e55a751b-c36b-4592-be99-fd1f01c47d4f
+cuda
+model.safetensors: 100%
+ 39.2M/39.2M [00:00<00:00, 132MB/s]
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 13:53:29,028] Trial 0 finished with value: 0.6360824742268041 and parameters: {'lr': 0.000876903389494297, 'weight_decay': 0.004041241528894238, 'optimizer': 'Adam', 'batch_size': 512}. Best is trial 0 with value: 0.6360824742268041.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 14:13:18,908] Trial 1 finished with value: 0.0852233676975945 and parameters: {'lr': 0.00010573881113168833, 'weight_decay': 3.0089558127157896e-06, 'optimizer': 'SGD', 'batch_size': 32}. Best is trial 0 with value: 0.6360824742268041.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 14:31:22,087] Trial 2 finished with value: 0.08831615120274915 and parameters: {'lr': 0.006791860929659318, 'weight_decay': 0.005014786704809622, 'optimizer': 'SGD', 'batch_size': 512}. Best is trial 0 with value: 0.6360824742268041.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 14:49:43,461] Trial 3 finished with value: 0.027491408934707903 and parameters: {'lr': 0.006625575631651924, 'weight_decay': 6.90686923949619e-06, 'optimizer': 'Adam', 'batch_size': 128}. Best is trial 0 with value: 0.6360824742268041.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 15:08:09,539] Trial 4 finished with value: 0.381786941580756 and parameters: {'lr': 1.1732574670251185e-05, 'weight_decay': 0.0003637911774184514, 'optimizer': 'Adam', 'batch_size': 128}. Best is trial 0 with value: 0.6360824742268041.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 15:26:33,909] Trial 5 finished with value: 0.6790378006872853 and parameters: {'lr': 6.705740146199804e-05, 'weight_decay': 6.383137167073753e-05, 'optimizer': 'Adam', 'batch_size': 128}. Best is trial 5 with value: 0.6790378006872853.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 15:33:50,780] Trial 6 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 15:52:16,476] Trial 7 finished with value: 0.6376288659793814 and parameters: {'lr': 0.000689442800768103, 'weight_decay': 0.00011775156692571248, 'optimizer': 'Adam', 'batch_size': 128}. Best is trial 5 with value: 0.6790378006872853.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 15:59:32,616] Trial 8 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 16:17:56,511] Trial 9 finished with value: 0.7152920962199313 and parameters: {'lr': 0.0001830562822726927, 'weight_decay': 3.512743613854793e-06, 'optimizer': 'Adam', 'batch_size': 128}. Best is trial 9 with value: 0.7152920962199313.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 16:25:30,464] Trial 10 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 16:43:55,265] Trial 11 finished with value: 0.6634020618556701 and parameters: {'lr': 6.199959569602888e-05, 'weight_decay': 2.763102060075446e-05, 'optimizer': 'Adam', 'batch_size': 128}. Best is trial 9 with value: 0.7152920962199313.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 16:51:15,350] Trial 12 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 17:10:17,645] Trial 13 finished with value: 0.7061855670103093 and parameters: {'lr': 0.00019080987118271753, 'weight_decay': 1.0835318125085324e-06, 'optimizer': 'Adam', 'batch_size': 64}. Best is trial 9 with value: 0.7152920962199313.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 17:29:11,029] Trial 14 finished with value: 0.6768041237113402 and parameters: {'lr': 0.0002933821996862136, 'weight_decay': 1.4824390037193928e-06, 'optimizer': 'Adam', 'batch_size': 64}. Best is trial 9 with value: 0.7152920962199313.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 17:36:44,801] Trial 15 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 17:56:37,585] Trial 16 finished with value: 0.670446735395189 and parameters: {'lr': 0.00014504557461926884, 'weight_decay': 7.295847986969683e-06, 'optimizer': 'Adam', 'batch_size': 32}. Best is trial 9 with value: 0.7152920962199313.
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 18:04:12,073] Trial 17 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+[I 2025-07-12 18:11:44,854] Trial 18 pruned. 
+Let's use 2 GPUs!
+Epoch number:  0
+Epoch number:  1
+Epoch number:  2
+Epoch number:  3
+Epoch number:  4
+[I 2025-07-12 18:29:53,884] Trial 19 finished with value: 0.7163230240549828 and parameters: {'lr': 0.00016492281385953615, 'weight_decay': 0.00018312603291697344, 'optimizer': 'Adam', 'batch_size': 256}. Best is trial 19 with value: 0.7163230240549828.
+Best trial:
+  Accuracy: 0.7163
+  Best hyperparameters:
+    lr: 0.00016492281385953615
+    weight_decay: 0.00018312603291697344
+    optimizer: Adam
+    batch_size: 256
