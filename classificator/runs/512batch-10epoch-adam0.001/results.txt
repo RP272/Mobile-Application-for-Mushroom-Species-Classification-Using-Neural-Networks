@@ -1,0 +1,42 @@
+Start training
+  0% 0/10 [00:00<?, ?it/s]0
+Epoch: 1 | train_loss: 1.3311 | train_acc: 0.6527 | test_loss: 1.4791 | test_acc: 0.6136
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 10% 1/10 [09:51<1:28:42, 591.42s/it]
+
+Epoch: 2 | train_loss: 0.5757 | train_acc: 0.8275 | test_loss: 0.9454 | test_acc: 0.7308
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 20% 2/10 [19:48<1:19:17, 594.69s/it]
+
+Epoch: 3 | train_loss: 0.3814 | train_acc: 0.8800 | test_loss: 0.9122 | test_acc: 0.7514
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 30% 3/10 [29:39<1:09:10, 592.89s/it]
+
+Epoch: 4 | train_loss: 0.2656 | train_acc: 0.9157 | test_loss: 0.8188 | test_acc: 0.7758
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 40% 4/10 [39:34<59:22, 593.78s/it]
+
+Epoch: 5 | train_loss: 0.2006 | train_acc: 0.9352 | test_loss: 0.9093 | test_acc: 0.7558
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 50% 5/10 [49:21<49:17, 591.56s/it]0
+
+Epoch: 6 | train_loss: 0.1651 | train_acc: 0.9458 | test_loss: 0.9425 | test_acc: 0.7502
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 60% 6/10 [59:16<39:29, 592.47s/it]
+
+Epoch: 7 | train_loss: 0.1267 | train_acc: 0.9599 | test_loss: 1.0044 | test_acc: 0.7593
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 70% 7/10 [1:09:02<29:31, 590.62s/it]
+
+Epoch: 8 | train_loss: 0.1060 | train_acc: 0.9669 | test_loss: 1.0279 | test_acc: 0.7466
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 80% 8/10 [1:18:47<19:37, 588.75s/it]
+
+Epoch: 9 | train_loss: 0.0871 | train_acc: 0.9727 | test_loss: 0.9039 | test_acc: 0.7799
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+ 90% 9/10 [1:28:38<09:49, 589.48s/it]0
+
+Epoch: 10 | train_loss: 0.0852 | train_acc: 0.9725 | test_loss: 1.1731 | test_acc: 0.7368
+[INFO] Saving model to: models/MobileNetV4-Mushroom.pth
+100% 10/10 [1:38:25<00:00, 590.50s/it]
+Total training time: 5905.004 seconds

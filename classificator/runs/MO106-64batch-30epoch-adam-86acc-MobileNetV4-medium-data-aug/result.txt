@@ -1,0 +1,85 @@
+100%
+ 30/30 [1:48:52<00:00, 217.94s/it]
+Epoch: 1 | train_loss: 3.3664 | train_acc: 0.2443 | test_loss: 1.6793 | test_acc: 0.5509
+[INFO] Saving model to: /kaggle/working/Epoch-1-MobileNetV4-Mushroom.pth
+Epoch: 2 | train_loss: 1.9095 | train_acc: 0.5094 | test_loss: 1.1127 | test_acc: 0.6894
+[INFO] Saving model to: /kaggle/working/Epoch-2-MobileNetV4-Mushroom.pth
+Epoch: 3 | train_loss: 1.4949 | train_acc: 0.6050 | test_loss: 0.8817 | test_acc: 0.7505
+[INFO] Saving model to: /kaggle/working/Epoch-3-MobileNetV4-Mushroom.pth
+Epoch: 4 | train_loss: 1.2829 | train_acc: 0.6557 | test_loss: 0.7784 | test_acc: 0.7782
+[INFO] Saving model to: /kaggle/working/Epoch-4-MobileNetV4-Mushroom.pth
+Epoch: 5 | train_loss: 1.1178 | train_acc: 0.7000 | test_loss: 0.6892 | test_acc: 0.8006
+[INFO] Saving model to: /kaggle/working/Epoch-5-MobileNetV4-Mushroom.pth
+Epoch: 6 | train_loss: 1.0224 | train_acc: 0.7237 | test_loss: 0.6363 | test_acc: 0.8186
+[INFO] Saving model to: /kaggle/working/Epoch-6-MobileNetV4-Mushroom.pth
+Epoch: 7 | train_loss: 0.9400 | train_acc: 0.7452 | test_loss: 0.5913 | test_acc: 0.8300
+[INFO] Saving model to: /kaggle/working/Epoch-7-MobileNetV4-Mushroom.pth
+Epoch: 8 | train_loss: 0.8690 | train_acc: 0.7672 | test_loss: 0.5761 | test_acc: 0.8323
+[INFO] Saving model to: /kaggle/working/Epoch-8-MobileNetV4-Mushroom.pth
+Epoch: 9 | train_loss: 0.8271 | train_acc: 0.7772 | test_loss: 0.5494 | test_acc: 0.8411
+[INFO] Saving model to: /kaggle/working/Epoch-9-MobileNetV4-Mushroom.pth
+Epoch: 10 | train_loss: 0.7794 | train_acc: 0.7856 | test_loss: 0.5534 | test_acc: 0.8378
+[INFO] Saving model to: /kaggle/working/Epoch-10-MobileNetV4-Mushroom.pth
+Epoch: 11 | train_loss: 0.7302 | train_acc: 0.8045 | test_loss: 0.5385 | test_acc: 0.8435
+[INFO] Saving model to: /kaggle/working/Epoch-11-MobileNetV4-Mushroom.pth
+Epoch: 12 | train_loss: 0.7022 | train_acc: 0.8075 | test_loss: 0.5158 | test_acc: 0.8500
+[INFO] Saving model to: /kaggle/working/Epoch-12-MobileNetV4-Mushroom.pth
+Epoch: 13 | train_loss: 0.6942 | train_acc: 0.8125 | test_loss: 0.5097 | test_acc: 0.8503
+[INFO] Saving model to: /kaggle/working/Epoch-13-MobileNetV4-Mushroom.pth
+Epoch: 14 | train_loss: 0.6432 | train_acc: 0.8297 | test_loss: 0.4885 | test_acc: 0.8574
+[INFO] Saving model to: /kaggle/working/Epoch-14-MobileNetV4-Mushroom.pth
+Epoch: 15 | train_loss: 0.6283 | train_acc: 0.8314 | test_loss: 0.5115 | test_acc: 0.8545
+[INFO] Saving model to: /kaggle/working/Epoch-15-MobileNetV4-Mushroom.pth
+Epoch: 16 | train_loss: 0.6104 | train_acc: 0.8369 | test_loss: 0.5145 | test_acc: 0.8538
+[INFO] Saving model to: /kaggle/working/Epoch-16-MobileNetV4-Mushroom.pth
+Epoch: 17 | train_loss: 0.5941 | train_acc: 0.8380 | test_loss: 0.4973 | test_acc: 0.8564
+[INFO] Saving model to: /kaggle/working/Epoch-17-MobileNetV4-Mushroom.pth
+Epoch: 18 | train_loss: 0.5796 | train_acc: 0.8448 | test_loss: 0.4960 | test_acc: 0.8601
+[INFO] Saving model to: /kaggle/working/Epoch-18-MobileNetV4-Mushroom.pth
+Epoch: 19 | train_loss: 0.5643 | train_acc: 0.8501 | test_loss: 0.4925 | test_acc: 0.8596
+[INFO] Saving model to: /kaggle/working/Epoch-19-MobileNetV4-Mushroom.pth
+Epoch: 20 | train_loss: 0.5423 | train_acc: 0.8580 | test_loss: 0.4823 | test_acc: 0.8616
+[INFO] Saving model to: /kaggle/working/Epoch-20-MobileNetV4-Mushroom.pth
+Epoch: 21 | train_loss: 0.5420 | train_acc: 0.8547 | test_loss: 0.4699 | test_acc: 0.8644
+[INFO] Saving model to: /kaggle/working/Epoch-21-MobileNetV4-Mushroom.pth
+Epoch: 22 | train_loss: 0.5272 | train_acc: 0.8590 | test_loss: 0.4764 | test_acc: 0.8631
+[INFO] Saving model to: /kaggle/working/Epoch-22-MobileNetV4-Mushroom.pth
+Epoch: 23 | train_loss: 0.5270 | train_acc: 0.8618 | test_loss: 0.4651 | test_acc: 0.8722
+[INFO] Saving model to: /kaggle/working/Epoch-23-MobileNetV4-Mushroom.pth
+Epoch: 24 | train_loss: 0.5187 | train_acc: 0.8614 | test_loss: 0.4613 | test_acc: 0.8703
+[INFO] Saving model to: /kaggle/working/Epoch-24-MobileNetV4-Mushroom.pth
+Epoch: 25 | train_loss: 0.5182 | train_acc: 0.8635 | test_loss: 0.4763 | test_acc: 0.8671
+[INFO] Saving model to: /kaggle/working/Epoch-25-MobileNetV4-Mushroom.pth
+Epoch: 26 | train_loss: 0.5003 | train_acc: 0.8678 | test_loss: 0.4751 | test_acc: 0.8655
+[INFO] Saving model to: /kaggle/working/Epoch-26-MobileNetV4-Mushroom.pth
+Epoch: 27 | train_loss: 0.5003 | train_acc: 0.8688 | test_loss: 0.4648 | test_acc: 0.8751
+[INFO] Saving model to: /kaggle/working/Epoch-27-MobileNetV4-Mushroom.pth
+Epoch: 28 | train_loss: 0.4876 | train_acc: 0.8731 | test_loss: 0.4800 | test_acc: 0.8689
+[INFO] Saving model to: /kaggle/working/Epoch-28-MobileNetV4-Mushroom.pth
+Epoch: 29 | train_loss: 0.5005 | train_acc: 0.8690 | test_loss: 0.4780 | test_acc: 0.8655
+[INFO] Saving model to: /kaggle/working/Epoch-29-MobileNetV4-Mushroom.pth
+Epoch: 30 | train_loss: 0.4821 | train_acc: 0.8761 | test_loss: 0.4787 | test_acc: 0.8665
+[INFO] Saving model to: /kaggle/working/Epoch-30-MobileNetV4-Mushroom.pth
+
+ADDITIONAL 10 EPOCHS:
+
+Epoch: 1 | train_loss: 0.4804 | train_acc: 0.8763 | test_loss: 0.4716 | test_acc: 0.8672
+[INFO] Saving model to: /kaggle/working/Epoch-1-MobileNetV4-Mushroom.pth
+Epoch: 2 | train_loss: 0.4601 | train_acc: 0.8810 | test_loss: 0.4607 | test_acc: 0.8724
+[INFO] Saving model to: /kaggle/working/Epoch-2-MobileNetV4-Mushroom.pth
+Epoch: 3 | train_loss: 0.4561 | train_acc: 0.8825 | test_loss: 0.4465 | test_acc: 0.8765
+[INFO] Saving model to: /kaggle/working/Epoch-3-MobileNetV4-Mushroom.pth
+Epoch: 4 | train_loss: 0.4598 | train_acc: 0.8823 | test_loss: 0.4663 | test_acc: 0.8726
+[INFO] Saving model to: /kaggle/working/Epoch-4-MobileNetV4-Mushroom.pth
+Epoch: 5 | train_loss: 0.4280 | train_acc: 0.8896 | test_loss: 0.4716 | test_acc: 0.8687
+[INFO] Saving model to: /kaggle/working/Epoch-5-MobileNetV4-Mushroom.pth
+Epoch: 6 | train_loss: 0.4282 | train_acc: 0.8893 | test_loss: 0.4848 | test_acc: 0.8657
+[INFO] Saving model to: /kaggle/working/Epoch-6-MobileNetV4-Mushroom.pth
+Epoch: 7 | train_loss: 0.4190 | train_acc: 0.8916 | test_loss: 0.4466 | test_acc: 0.8809
+[INFO] Saving model to: /kaggle/working/Epoch-7-MobileNetV4-Mushroom.pth
+Epoch: 8 | train_loss: 0.4264 | train_acc: 0.8902 | test_loss: 0.4597 | test_acc: 0.8731
+[INFO] Saving model to: /kaggle/working/Epoch-8-MobileNetV4-Mushroom.pth
+Epoch: 9 | train_loss: 0.4264 | train_acc: 0.8897 | test_loss: 0.4433 | test_acc: 0.8779
+[INFO] Saving model to: /kaggle/working/Epoch-9-MobileNetV4-Mushroom.pth
+Epoch: 10 | train_loss: 0.4158 | train_acc: 0.8931 | test_loss: 0.4863 | test_acc: 0.8657
+[INFO] Saving model to: /kaggle/working/Epoch-10-MobileNetV4-Mushroom.pth
