@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mushroomclassifier.databinding.FragmentClassifyBinding
@@ -22,15 +23,23 @@ class ClassifyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
+        val classifyViewModel =
             ViewModelProvider(this).get(ClassifyViewModel::class.java)
 
         _binding = FragmentClassifyBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textClassify
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        classifyViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+
+        val imageView = binding.imageView;
+        imageView.drawable?.alpha = (0.05 * 255).toInt();
+
+        imageView.setOnClickListener {
+            // TODO: photo upload + model inference
+            Toast.makeText(requireContext(), "CAMERA BUTTON CLICKED", Toast.LENGTH_SHORT).show();
         }
         return root
     }
