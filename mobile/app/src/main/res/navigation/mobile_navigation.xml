@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/navigation_classify"
-        android:name="com.example.mushroomclassifier.ui.dashboard.DashboardFragment"
+        android:name="com.example.mushroomclassifier.ui.classify.ClassifyFragment"
         android:label="@string/title_classify"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_classify" />
 
     <fragment
         android:id="@+id/navigation_species"
-        android:name="com.example.mushroomclassifier.ui.notifications.NotificationsFragment"
+        android:name="com.example.mushroomclassifier.ui.species.SpeciesFragment"
         android:label="@string/title_species"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_species" />
 
     <fragment
         android:id="@+id/navigation_about"
-        android:name="com.example.mushroomclassifier.ui.notifications.NotificationsFragment"
+        android:name="com.example.mushroomclassifier.ui.about.AboutFragment"
         android:label="@string/title_about"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_about" />
 </navigation>
