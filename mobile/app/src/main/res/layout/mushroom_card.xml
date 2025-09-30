@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="8dp"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/mushroomImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cnv1_19" />
+
+        <TextView
+            android:id="@+id/mushroomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amanita muscaria"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp" />
+
+        <TextView
+            android:id="@+id/mushroomEdibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poisonous"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/mushroomDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A bright red mushroom with white spots..."
+            android:textSize="12sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/mushroomProbability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="85%"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:visibility="gone"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

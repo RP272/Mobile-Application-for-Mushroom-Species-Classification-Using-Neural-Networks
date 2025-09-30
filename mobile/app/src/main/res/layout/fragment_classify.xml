@@ -8,6 +8,22 @@
     android:background="@color/white"
     >
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/predictionsRecyclerView"
+        android:layout_width="317dp"
+        android:layout_height="638dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/image_upload_button"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:padding="16dp"
+        android:scrollbars="none"
+    />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="317dp"

@@ -11,12 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.mushroomclassifier.data.model.MushroomSpecies
 import com.example.mushroomclassifier.databinding.FragmentClassifyBinding
+import com.example.mushroomclassifier.ui.common.MushroomAdapter
 import org.pytorch.IValue
 import org.pytorch.LiteModuleLoader
 import org.pytorch.Module
@@ -69,6 +72,13 @@ class ClassifyFragment : Fragment() {
         imageView.setOnClickListener {
             showPickDialog()
         }
+
+        binding.predictionsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.predictionsRecyclerView)
+
         return root
     }
 
@@ -132,22 +142,26 @@ class ClassifyFragment : Fragment() {
         val maxIndex = probabilities.indices.maxByOrNull { probabilities[it] } ?: -1
         val maxProb = if (maxIndex != -1) probabilities[maxIndex] else 0f
 
-        val top3 = probabilities.withIndex().sortedByDescending { it.value }.take(3)
+        val top3 = probabilities
+            .withIndex()
+            .sortedByDescending { it.value }
+            .take(3)
 
-        val predictionsText = top3.joinToString("\n") { (index, prob) ->
-            val label = mushroomLabels.getOrNull(index) ?: "Unknown"
-            "$label (${String.format("%.2f", prob * 100)}%)"
+        val predictions = top3.map { (index, prob) ->
+            MushroomSpecies(
+                latinName = mushroomLabels.getOrNull(index) ?: "Unknown",
+                image = "@drawable/cnv1_19",
+                description = "some description",
+                edibility = "Unknown",
+                probability = prob
+            )
         }
 
-        binding.textClassify.text = "Top 3 predictions:\n$predictionsText"
-//        val predictedLabel = if (maxIndex in mushroomLabels.indices) {
-//            mushroomLabels[maxIndex]
-//        } else {
-//            "Unknown"
-//        }
-//
-//        binding.textClassify.text =
-//            "Predicted class: $predictedLabel (prob: ${"%.2f".format(maxProb * 100)}%)"
+        binding.textClassify.visibility = View.GONE
+        binding.imageView.visibility = View.GONE
+        binding.predictionsRecyclerView.visibility = View.VISIBLE
+        // ...
+        binding.predictionsRecyclerView.adapter = MushroomAdapter(predictions)
     }
 
     private fun bitmapToTensor(bitmap: Bitmap): Tensor {
