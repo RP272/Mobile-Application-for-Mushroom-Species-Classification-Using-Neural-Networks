@@ -160,8 +160,8 @@ class ClassifyFragment : Fragment() {
         binding.textClassify.visibility = View.GONE
         binding.imageView.visibility = View.GONE
         binding.predictionsRecyclerView.visibility = View.VISIBLE
-        // ...
         binding.predictionsRecyclerView.adapter = MushroomAdapter(predictions)
+        binding.predictionsRecyclerView.scrollToPosition(0)
     }
 
     private fun bitmapToTensor(bitmap: Bitmap): Tensor {

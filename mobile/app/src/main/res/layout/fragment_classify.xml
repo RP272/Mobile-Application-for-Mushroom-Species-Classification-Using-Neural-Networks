@@ -10,17 +10,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/predictionsRecyclerView"
-        android:layout_width="317dp"
+        android:layout_width="match_parent"
         android:layout_height="638dp"
         android:layout_marginTop="44dp"
-        android:background="@drawable/image_upload_button"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
         android:overScrollMode="never"
-        android:padding="16dp"
         android:scrollbars="none"
     />
 
@@ -51,8 +49,8 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintVertical_bias="0.479" />
 </androidx.constraintlayout.widget.ConstraintLayout>

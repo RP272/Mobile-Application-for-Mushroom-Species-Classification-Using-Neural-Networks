@@ -5,10 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="8dp"
-    android:backgroundTint="@color/white">
+    app:cardCornerRadius="18dp"
+    android:backgroundTint="@color/white"
+    app:strokeColor="@color/white"
+    android:layout_marginHorizontal="33dp"
+    >
 
     <LinearLayout
+        android:background="@drawable/image_upload_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Amanita muscaria"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginTop="6dp" />
 
@@ -40,6 +45,7 @@
         <TextView
             android:id="@+id/mushroomDescription"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="A bright red mushroom with white spots..."
             android:textSize="12sp"
