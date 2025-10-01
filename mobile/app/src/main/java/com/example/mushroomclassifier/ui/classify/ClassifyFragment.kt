@@ -1,6 +1,5 @@
 package com.example.mushroomclassifier.ui.classify
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -17,18 +16,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.mushroomclassifier.MainActivity
 import com.example.mushroomclassifier.data.model.EdibilityEnum
 import com.example.mushroomclassifier.data.model.MushroomSpecies
 import com.example.mushroomclassifier.data.repository.MushroomRepository
 import com.example.mushroomclassifier.databinding.FragmentClassifyBinding
 import com.example.mushroomclassifier.ui.common.MushroomAdapter
 import org.pytorch.IValue
-import org.pytorch.LiteModuleLoader
 import org.pytorch.Module
 import org.pytorch.Tensor
 import org.pytorch.torchvision.TensorImageUtils
-import java.io.File
-import java.io.FileOutputStream
 
 class ClassifyFragment : Fragment() {
 
@@ -39,6 +36,7 @@ class ClassifyFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var module: Module
+    private lateinit var mushroomRepository: MushroomRepository
     private lateinit var galleryLauncher: ActivityResultLauncher<String>
     private lateinit var cameraLauncher: ActivityResultLauncher<Void?>
 
@@ -63,13 +61,8 @@ class ClassifyFragment : Fragment() {
 
         val context = requireContext()
 
-        // Loading the model in this place slows down the classify page open. TODO: Move module loading to MainActivity
-        module = LiteModuleLoader.load(
-            assetFilePath(
-                context,
-                "MobileNetV4-Mushroom-Classifier-MO106.ptl"
-            )
-        )
+        module = (requireActivity() as MainActivity).module
+        mushroomRepository = (requireActivity() as MainActivity).mushroomRepository
 
         setupActivityResultLaunchers()
 
@@ -153,7 +146,7 @@ class ClassifyFragment : Fragment() {
 
         val predictions = top3.map { (index, prob) ->
             // TODO: Move loading the species data to MainActivity
-            val species = MushroomRepository().getSpeciesByIndex(requireContext(), index)
+            val species = mushroomRepository.getSpeciesByIndex(requireContext(), index)
 
             MushroomSpecies(
                 latinName = mushroomLabels.getOrNull(index) ?: "Unknown",
@@ -185,22 +178,6 @@ class ClassifyFragment : Fragment() {
         _binding = null
     }
 
-    fun assetFilePath(context: Context, assetName: String): String {
-        val file = File(context.filesDir, assetName)
-        if (!file.exists()) {
-            context.assets.open(assetName).use { inputStream ->
-                FileOutputStream(file).use { outputStream ->
-                    val buffer = ByteArray(4 * 1024)
-                    var read: Int
-                    while (inputStream.read(buffer).also { read = it } != -1) {
-                        outputStream.write(buffer, 0, read)
-                    }
-                    outputStream.flush()
-                }
-            }
-        }
-        return file.absolutePath
-    }
 
     private val mushroomLabels = listOf(
         "Agaricus augustus",
