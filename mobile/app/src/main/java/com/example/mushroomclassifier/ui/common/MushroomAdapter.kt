@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mushroomclassifier.R
+import com.example.mushroomclassifier.data.model.EdibilityEnum
 import com.example.mushroomclassifier.data.model.MushroomSpecies
 
 class MushroomAdapter(private val items: List<MushroomSpecies>) :
@@ -25,6 +26,7 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
         val probability: TextView = itemView.findViewById(R.id.mushroomProbability)
         val infoIcon: ImageView = itemView.findViewById(R.id.imageView2)
         val additionalInfo: LinearLayout = itemView.findViewById(R.id.additionalInfo)
+        val edibilityIcon: ImageView = itemView.findViewById(R.id.edibilityIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MushroomViewHolder {
@@ -34,8 +36,6 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
     }
 
     override fun onBindViewHolder(holder: MushroomViewHolder, position: Int) {
-        // TODO: Change the color of edibility icon based on edibility type of mushroom species
-
         val item = items[position]
 
         holder.name.text = item.latinName
@@ -70,6 +70,7 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
         } else {
             holder.additionalInfo.alpha = 0.0f
             holder.infoIcon.setColorFilter(0xFF6F006)
+            holder.description.setOnTouchListener(null)
         }
 
         holder.infoIcon.setOnClickListener {
@@ -78,6 +79,16 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
         }
 
         holder.description.movementMethod = ScrollingMovementMethod()
+
+        if (item.edibility == EdibilityEnum.EDIBLE){
+            holder.edibilityIcon.setColorFilter(Color.GREEN)
+        } else if(item.edibility == EdibilityEnum.INEDIBLE){
+            holder.edibilityIcon.setColorFilter(Color.YELLOW)
+        } else if(item.edibility == EdibilityEnum.TOXIC){
+            holder.edibilityIcon.setColorFilter(Color.RED)
+        } else{
+            holder.edibilityIcon.setColorFilter(Color.LTGRAY)
+        }
     }
 
     override fun getItemCount() = items.size
