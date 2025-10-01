@@ -1,6 +1,7 @@
 package com.example.mushroomclassifier.ui.common
 
 import android.graphics.Color
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +37,8 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
         val item = items[position]
 
         holder.name.text = item.latinName
-        holder.edibility.text = item.edibility
-        holder.description.text = item.description
+        holder.edibility.text = "Edibility: ${item.edibility}"
+        holder.description.text = "Description: ${item.description}"
 
         val resId = holder.itemView.context.resources.getIdentifier(
             item.image,
@@ -60,14 +61,21 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
         if (expandedStates[position]) {
             holder.additionalInfo.alpha = 1.0f
             holder.infoIcon.setColorFilter(Color.WHITE)
+            holder.description.setOnTouchListener { v, event ->
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                false
+            }
         } else {
             holder.additionalInfo.alpha = 0.0f
+            holder.infoIcon.setColorFilter(0xFF6F006)
         }
 
         holder.infoIcon.setOnClickListener {
             expandedStates[position] = !expandedStates[position]
             notifyItemChanged(position)
         }
+
+        holder.description.movementMethod = ScrollingMovementMethod()
     }
 
     override fun getItemCount() = items.size

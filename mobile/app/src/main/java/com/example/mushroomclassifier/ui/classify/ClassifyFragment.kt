@@ -153,7 +153,7 @@ class ClassifyFragment : Fragment() {
             MushroomSpecies(
                 latinName = mushroomLabels.getOrNull(index) ?: "Unknown",
                 image = "@drawable/pexels_ekamelev_4178330",
-                description = "some description",
+                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada interdum feugiat. Nullam porttitor varius enim, vitae pharetra orci pellentesque vitae. Duis aliquam ante dignissim dui mollis elementum. Nulla consequat tempor lectus, vel aliquet sapien dapibus in. Cras imperdiet fringilla ex, sed volutpat tellus egestas quis. Donec tempus odio risus, at dapibus mauris tincidunt non. Proin malesuada semper varius. Nullam mattis odio ut turpis vulputate, ut imperdiet sapien venenatis. Curabitur aliquam sit amet dui id posuere. Suspendisse magna velit, aliquam vel libero sit amet, euismod consectetur metus. Cras sit amet arcu lectus. Mauris iaculis quam metus, a feugiat mauris lobortis eget. Aliquam tincidunt mauris eget justo commodo, eu malesuada dolor tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique sollicitudin odio a venenatis.",
                 edibility = "Unknown",
                 probability = prob
             )
@@ -162,8 +162,8 @@ class ClassifyFragment : Fragment() {
         binding.textClassify.visibility = View.GONE
         binding.imageView.visibility = View.GONE
         binding.predictionsRecyclerView.visibility = View.VISIBLE
-        binding.predictionsRecyclerView.adapter = MushroomAdapter(predictions)
         binding.predictionsRecyclerView.scrollToPosition(0)
+        binding.predictionsRecyclerView.adapter = MushroomAdapter(predictions)
     }
 
     private fun bitmapToTensor(bitmap: Bitmap): Tensor {
