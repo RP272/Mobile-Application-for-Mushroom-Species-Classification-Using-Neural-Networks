@@ -17,7 +17,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.mushroomclassifier.data.model.EdibilityEnum
 import com.example.mushroomclassifier.data.model.MushroomSpecies
+import com.example.mushroomclassifier.data.repository.MushroomRepository
 import com.example.mushroomclassifier.databinding.FragmentClassifyBinding
 import com.example.mushroomclassifier.ui.common.MushroomAdapter
 import org.pytorch.IValue
@@ -150,11 +152,14 @@ class ClassifyFragment : Fragment() {
             .take(3)
 
         val predictions = top3.map { (index, prob) ->
+            // TODO: Move loading the species data to MainActivity
+            val species = MushroomRepository().getSpeciesByIndex(requireContext(), index)
+
             MushroomSpecies(
                 latinName = mushroomLabels.getOrNull(index) ?: "Unknown",
-                image = "@drawable/pexels_ekamelev_4178330",
-                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada interdum feugiat. Nullam porttitor varius enim, vitae pharetra orci pellentesque vitae. Duis aliquam ante dignissim dui mollis elementum. Nulla consequat tempor lectus, vel aliquet sapien dapibus in. Cras imperdiet fringilla ex, sed volutpat tellus egestas quis. Donec tempus odio risus, at dapibus mauris tincidunt non. Proin malesuada semper varius. Nullam mattis odio ut turpis vulputate, ut imperdiet sapien venenatis. Curabitur aliquam sit amet dui id posuere. Suspendisse magna velit, aliquam vel libero sit amet, euismod consectetur metus. Cras sit amet arcu lectus. Mauris iaculis quam metus, a feugiat mauris lobortis eget. Aliquam tincidunt mauris eget justo commodo, eu malesuada dolor tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique sollicitudin odio a venenatis.",
-                edibility = "Unknown",
+                image = species?.image ?: "@drawable/pexels_ekamelev_4178330",
+                description = species?.description ?: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada interdum feugiat. Nullam porttitor varius enim, vitae pharetra orci pellentesque vitae. Duis aliquam ante dignissim dui mollis elementum. Nulla consequat tempor lectus, vel aliquet sapien dapibus in. Cras imperdiet fringilla ex, sed volutpat tellus egestas quis. Donec tempus odio risus, at dapibus mauris tincidunt non. Proin malesuada semper varius. Nullam mattis odio ut turpis vulputate, ut imperdiet sapien venenatis. Curabitur aliquam sit amet dui id posuere. Suspendisse magna velit, aliquam vel libero sit amet, euismod consectetur metus. Cras sit amet arcu lectus. Mauris iaculis quam metus, a feugiat mauris lobortis eget. Aliquam tincidunt mauris eget justo commodo, eu malesuada dolor tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique sollicitudin odio a venenatis.",
+                edibility = species?.edibility ?: EdibilityEnum.INEDIBLE,
                 probability = prob
             )
         }

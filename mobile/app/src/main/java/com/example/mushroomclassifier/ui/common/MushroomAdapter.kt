@@ -34,10 +34,12 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
     }
 
     override fun onBindViewHolder(holder: MushroomViewHolder, position: Int) {
+        // TODO: Change the color of edibility icon based on edibility type of mushroom species
+
         val item = items[position]
 
         holder.name.text = item.latinName
-        holder.edibility.text = "Edibility: ${item.edibility}"
+        holder.edibility.text = "Edibility: ${item.edibility.toString().lowercase()}"
         holder.description.text = "Description: ${item.description}"
 
         val resId = holder.itemView.context.resources.getIdentifier(
