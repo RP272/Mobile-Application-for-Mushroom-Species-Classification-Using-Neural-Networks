@@ -60,6 +60,8 @@ class ClassifyFragment : Fragment() {
         imageView.drawable?.alpha = (0.05 * 255).toInt();
 
         val context = requireContext()
+
+        // Loading the model in this place slows down the classify page open. TODO: Move module loading to MainActivity
         module = LiteModuleLoader.load(
             assetFilePath(
                 context,
@@ -150,7 +152,7 @@ class ClassifyFragment : Fragment() {
         val predictions = top3.map { (index, prob) ->
             MushroomSpecies(
                 latinName = mushroomLabels.getOrNull(index) ?: "Unknown",
-                image = "@drawable/cnv1_19",
+                image = "@drawable/pexels_ekamelev_4178330",
                 description = "some description",
                 edibility = "Unknown",
                 probability = prob

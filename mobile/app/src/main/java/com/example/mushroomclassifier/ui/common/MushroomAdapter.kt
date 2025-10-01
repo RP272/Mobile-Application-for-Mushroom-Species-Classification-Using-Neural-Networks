@@ -1,22 +1,29 @@
 package com.example.mushroomclassifier.ui.common
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mushroomclassifier.data.model.MushroomSpecies
 import com.example.mushroomclassifier.R
+import com.example.mushroomclassifier.data.model.MushroomSpecies
 
 class MushroomAdapter(private val items: List<MushroomSpecies>) :
     RecyclerView.Adapter<MushroomAdapter.MushroomViewHolder>() {
+
+    private val expandedStates = BooleanArray(items.size) { false }
+
     class MushroomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.mushroomName)
         val edibility: TextView = itemView.findViewById(R.id.mushroomEdibility)
         val description: TextView = itemView.findViewById(R.id.mushroomDescription)
         val image: ImageView = itemView.findViewById(R.id.mushroomImage)
         val probability: TextView = itemView.findViewById(R.id.mushroomProbability)
+        val infoIcon: ImageView = itemView.findViewById(R.id.imageView2)
+        val additionalInfo: LinearLayout = itemView.findViewById(R.id.additionalInfo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MushroomViewHolder {
@@ -44,10 +51,22 @@ class MushroomAdapter(private val items: List<MushroomSpecies>) :
         }
 
         if (item.probability != null) {
-            holder.probability.text = String.format("Confidence: %.2f%%", item.probability * 100)
+            holder.probability.text = String.format("Confidence: %.2f %%", item.probability * 100)
             holder.probability.visibility = View.VISIBLE
         } else {
             holder.probability.visibility = View.GONE
+        }
+
+        if (expandedStates[position]) {
+            holder.additionalInfo.alpha = 1.0f
+            holder.infoIcon.setColorFilter(Color.WHITE)
+        } else {
+            holder.additionalInfo.alpha = 0.0f
+        }
+
+        holder.infoIcon.setOnClickListener {
+            expandedStates[position] = !expandedStates[position]
+            notifyItemChanged(position)
         }
     }
 

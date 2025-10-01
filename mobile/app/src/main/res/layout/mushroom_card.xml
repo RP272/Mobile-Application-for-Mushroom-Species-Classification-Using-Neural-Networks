@@ -1,64 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="33dp"
+    android:backgroundTint="@color/white"
     android:clickable="true"
     android:focusable="true"
     app:cardCornerRadius="18dp"
-    android:backgroundTint="@color/white"
-    app:strokeColor="@color/white"
-    android:layout_marginHorizontal="33dp"
     >
 
-    <LinearLayout
-        android:background="@drawable/image_upload_button"
+    <ImageView
+        android:id="@+id/mushroomImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_margin="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pexels_ekamelev_4178330" />
 
-        <ImageView
-            android:id="@+id/mushroomImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cnv1_19" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/image_upload_button"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/mushroomName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:id="@+id/additionalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#7f000000"
+            app:layout_constraintTop_toTopOf="parent"
+            android:alpha="1"
+            >
+            <TextView
+                android:id="@+id/mushroomEdibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Poisonous"
+                android:textColor="@color/white"
+                android:fontFamily="@font/autumn_fall"
+                android:textSize="30sp"
+                />
+
+            <TextView
+                android:id="@+id/mushroomDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="A bright red mushroom with white spots..."
+                android:textColor="@color/white"
+                android:fontFamily="@font/autumn_fall"
+                android:textSize="30sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Amanita muscaria"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginTop="6dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/mushroom_card_header_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
 
-        <TextView
-            android:id="@+id/mushroomEdibility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Poisonous"
-            android:textColor="@android:color/holo_green_dark"
-            android:layout_marginTop="2dp" />
+            <TextView
+                android:id="@+id/mushroomName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autumn_fall"
+                android:padding="8sp"
+                android:text="Volvopluteus gloiocephalus"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/mushroomDescription"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="A bright red mushroom with white spots..."
-            android:textSize="12sp"
-            android:layout_marginTop="4dp" />
-
-        <TextView
-            android:id="@+id/mushroomProbability"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="85%"
-            android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
-            android:visibility="gone"
-            android:layout_marginTop="4dp"/>
+            <TextView
+                android:id="@+id/mushroomProbability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/autumn_fall"
+                android:text="85%"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/info_16757900" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
