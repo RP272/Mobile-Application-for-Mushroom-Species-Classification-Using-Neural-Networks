@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.pytorch.android.lite)
     implementation(libs.pytorch.android.torchvision.lite)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
