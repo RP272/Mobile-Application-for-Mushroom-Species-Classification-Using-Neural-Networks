@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/pexels_ekamelev_4178330" />
+        android:src="@drawable/merulius_tremellosus_kz01" />
 
     <LinearLayout
         android:layout_width="match_parent"
