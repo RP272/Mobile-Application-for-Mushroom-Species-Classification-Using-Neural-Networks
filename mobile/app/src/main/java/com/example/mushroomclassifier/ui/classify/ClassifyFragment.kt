@@ -3,19 +3,22 @@ package com.example.mushroomclassifier.ui.classify
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.view.animation.AlphaAnimation
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mushroomclassifier.MainActivity
 import com.example.mushroomclassifier.data.model.EdibilityEnum
 import com.example.mushroomclassifier.data.model.MushroomSpecies
@@ -37,12 +40,20 @@ class ClassifyFragment : Fragment() {
     private lateinit var mushroomRepository: MushroomRepository
     private lateinit var galleryLauncher: ActivityResultLauncher<String>
     private lateinit var cameraLauncher: ActivityResultLauncher<Void?>
+    private lateinit var showAnim: AlphaAnimation
+    private lateinit var hideAnim: AlphaAnimation
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        showAnim = AlphaAnimation(0.0f, 1.0f)
+        showAnim.duration = 500
+        showAnim.fillAfter = true
+        hideAnim = AlphaAnimation(1.0f, 0.0f)
+        hideAnim.duration = 100
+        hideAnim.fillAfter = true
         _binding = FragmentClassifyBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -65,6 +76,35 @@ class ClassifyFragment : Fragment() {
 
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.predictionsRecyclerView)
+
+        binding.rightScrollIndicator.alpha = 0.0f
+        binding.leftScrollIndicator.alpha = 0.0f
+
+        binding.predictionsRecyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                when (newState) {
+                    RecyclerView.SCROLL_STATE_IDLE -> {
+                        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                        val firstVisible = layoutManager.findFirstCompletelyVisibleItemPosition()
+                        val lastVisible = layoutManager.findLastCompletelyVisibleItemPosition()
+
+                        val itemCount = recyclerView.adapter?.itemCount ?: 0
+
+                        if(firstVisible > 0){
+                            binding.leftScrollIndicator.startAnimation(showAnim)
+                        }
+
+                        if (lastVisible < itemCount - 1) {
+                            binding.rightScrollIndicator.startAnimation(showAnim)
+                        }
+                    }
+                    RecyclerView.SCROLL_STATE_DRAGGING -> {
+                        binding.leftScrollIndicator.startAnimation(hideAnim)
+                        binding.rightScrollIndicator.startAnimation(hideAnim)
+                    }
+                }
+            }
+        })
 
         binding.textClassify.setText("UPLOAD PHOTO")
         return root
@@ -153,6 +193,9 @@ class ClassifyFragment : Fragment() {
         binding.predictionsRecyclerView.visibility = View.VISIBLE
         binding.predictionsRecyclerView.scrollToPosition(0)
         binding.predictionsRecyclerView.adapter = MushroomAdapter(predictions)
+        binding.rightScrollIndicator.alpha = 1.0f
+        binding.leftScrollIndicator.alpha = 1.0f
+        binding.leftScrollIndicator.startAnimation(hideAnim)
     }
 
     private fun bitmapToTensor(bitmap: Bitmap): Tensor {
