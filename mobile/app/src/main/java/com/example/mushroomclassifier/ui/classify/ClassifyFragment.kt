@@ -31,8 +31,6 @@ class ClassifyFragment : Fragment() {
 
     private var _binding: FragmentClassifyBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private lateinit var module: Module
@@ -45,16 +43,8 @@ class ClassifyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val classifyViewModel =
-            ViewModelProvider(this).get(ClassifyViewModel::class.java)
-
         _binding = FragmentClassifyBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textClassify
-        classifyViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         val imageView = binding.imageView;
         imageView.drawable?.alpha = (0.05 * 255).toInt();
@@ -71,11 +61,12 @@ class ClassifyFragment : Fragment() {
         }
 
         binding.predictionsRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.predictionsRecyclerView)
 
+        binding.textClassify.setText("UPLOAD PHOTO")
         return root
     }
 
@@ -149,9 +140,9 @@ class ClassifyFragment : Fragment() {
             val species = mushroomRepository.getSpeciesByIndex(requireContext(), index)
 
             MushroomSpecies(
-                latinName = mushroomLabels.getOrNull(index) ?: "Unknown",
+                latinName = species?.latinName ?: "Unknown",
                 image = species?.image ?: "@drawable/pexels_ekamelev_4178330",
-                description = species?.description ?: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada interdum feugiat. Nullam porttitor varius enim, vitae pharetra orci pellentesque vitae. Duis aliquam ante dignissim dui mollis elementum. Nulla consequat tempor lectus, vel aliquet sapien dapibus in. Cras imperdiet fringilla ex, sed volutpat tellus egestas quis. Donec tempus odio risus, at dapibus mauris tincidunt non. Proin malesuada semper varius. Nullam mattis odio ut turpis vulputate, ut imperdiet sapien venenatis. Curabitur aliquam sit amet dui id posuere. Suspendisse magna velit, aliquam vel libero sit amet, euismod consectetur metus. Cras sit amet arcu lectus. Mauris iaculis quam metus, a feugiat mauris lobortis eget. Aliquam tincidunt mauris eget justo commodo, eu malesuada dolor tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique sollicitudin odio a venenatis.",
+                description = species?.description ?: "Description",
                 edibility = species?.edibility ?: EdibilityEnum.INEDIBLE,
                 probability = prob
             )
@@ -177,114 +168,4 @@ class ClassifyFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
-    private val mushroomLabels = listOf(
-        "Agaricus augustus",
-        "Agaricus xanthodermus",
-        "Amanita amerirubescens",
-        "Amanita augusta",
-        "Amanita brunnescens",
-        "Amanita calyptroderma",
-        "Amanita flavoconia",
-        "Amanita muscaria",
-        "Amanita persicina",
-        "Amanita phalloides",
-        "Amanita velosa",
-        "Armillaria mellea",
-        "Armillaria tabescens",
-        "Artomyces pyxidatus",
-        "Bolbitius titubans",
-        "Boletus pallidus",
-        "Boletus rex-veris",
-        "Cantharellus californicus",
-        "Cantharellus cinnabarinus",
-        "Cerioporus squamosus",
-        "Chlorophyllum brunneum",
-        "Chlorophyllum molybdites",
-        "Clitocybe nuda",
-        "Coprinellus micaceus",
-        "Coprinopsis lagopus",
-        "Coprinus comatus",
-        "Crucibulum laeve",
-        "Cryptoporus volvatus",
-        "Daedaleopsis confragosa",
-        "Entoloma abortivum",
-        "Flammulina velutipes",
-        "Fomitopsis mounceae",
-        "Galerina marginata",
-        "Ganoderma applanatum",
-        "Ganoderma curtisii",
-        "Ganoderma oregonense",
-        "Ganoderma tsugae",
-        "Gliophorus psittacinus",
-        "Gloeophyllum sepiarium",
-        "Grifola frondosa",
-        "Gymnopilus luteofolius",
-        "Hericium coralloides",
-        "Hericium erinaceus",
-        "Hygrophoropsis aurantiaca",
-        "Hypholoma fasciculare",
-        "Hypholoma lateritium",
-        "Hypomyces lactifluorum",
-        "Ischnoderma resinosum",
-        "Laccaria ochropurpurea",
-        "Lacrymaria lacrymabunda",
-        "Lactarius indigo",
-        "Laetiporus sulphureus",
-        "Laricifomes officinalis",
-        "Leratiomyces ceres",
-        "Leucoagaricus americanus",
-        "Leucoagaricus leucothites",
-        "Lycogala epidendrum",
-        "Lycoperdon perlatum",
-        "Lycoperdon pyriforme",
-        "Mycena haematopus",
-        "Mycena leaiana",
-        "Omphalotus illudens",
-        "Omphalotus olivascens",
-        "Panaeolina foenisecii",
-        "Panaeolus cinctulus",
-        "Panaeolus papilionaceus",
-        "Panellus stipticus",
-        "Phaeolus schweinitzii",
-        "Phlebia tremellosa",
-        "Phyllotopsis nidulans",
-        "Pleurotus ostreatus",
-        "Pleurotus pulmonarius",
-        "Pluteus cervinus",
-        "Psathyrella candolleana",
-        "Pseudohydnum gelatinosum",
-        "Psilocybe allenii",
-        "Psilocybe aztecorum",
-        "Psilocybe azurescens",
-        "Psilocybe caerulescens",
-        "Psilocybe cubensis",
-        "Psilocybe cyanescens",
-        "Psilocybe muliercula",
-        "Psilocybe neoxalapensis",
-        "Psilocybe ovoideocystidiata",
-        "Psilocybe pelliculosa",
-        "Psilocybe zapotecorum",
-        "Retiboletus ornatipes",
-        "Sarcomyxa serotina",
-        "Schizophyllum commune",
-        "Stereum ostrea",
-        "Stropharia ambigua",
-        "Stropharia rugosoannulata",
-        "Suillus americanus",
-        "Suillus luteus",
-        "Suillus spraguei",
-        "Tapinella atrotomentosa",
-        "Trametes betulina",
-        "Trametes gibbosa",
-        "Trametes versicolor",
-        "Trichaptum biforme",
-        "Tricholoma murrillianum",
-        "Tricholomopsis rutilans",
-        "Tubaria furfuracea",
-        "Tylopilus felleus",
-        "Tylopilus rubrobrunneus",
-        "Volvopluteus gloiocephalus"
-    )
 }

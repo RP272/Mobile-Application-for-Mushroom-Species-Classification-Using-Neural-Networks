@@ -30,9 +30,6 @@ class SpeciesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(SpeciesViewModel::class.java)
-
         _binding = FragmentSpeciesBinding.inflate(inflater, container, false)
 
         binding.speciesRecyclerView.layoutManager =
