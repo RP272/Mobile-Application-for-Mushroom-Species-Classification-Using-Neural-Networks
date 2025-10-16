@@ -1,25 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.about.AboutFragment"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="36dp"
     android:background="@color/white"
     >
 
     <TextView
         android:id="@+id/text_about"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:textSize="24sp"
+        android:textColor="@color/secondary"
+        android:fontFamily="@font/autumn_fall"
+        android:justificationMode="inter_word"
+        />
+
+    <TextView
+        android:layout_marginTop="36dp"
+        android:id="@+id/text_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="@color/primary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="24sp"
+        android:textColor="@color/secondary"
+        android:fontFamily="@font/autumn_fall"
+        android:justificationMode="inter_word"
+    />
+
+    <Button
+        android:layout_marginTop="36dp"
+        android:id="@+id/creditsButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREDITS"
+        android:fontFamily="@font/autumn_fall"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:padding="24dp"
+        android:backgroundTint="@color/purple_500"
+        android:alpha="1.0"
+        />
+</LinearLayout>

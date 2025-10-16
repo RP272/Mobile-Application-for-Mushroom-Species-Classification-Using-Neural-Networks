@@ -25,6 +25,9 @@ class AboutFragment : Fragment() {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.textAbout.setText("FUNGOOSE is a mobile application for mushroom species classification using convolutional neural networks (CNN). The application can be used to identify 106 mushroom species that are included in the list of MO106 dataset (Mushroom Observer 106). The convolutional neural network of choice is MobileNetV4.")
+
+        binding.textAuthor.setText("Created by: Robert Pytel")
         return root
     }
 
