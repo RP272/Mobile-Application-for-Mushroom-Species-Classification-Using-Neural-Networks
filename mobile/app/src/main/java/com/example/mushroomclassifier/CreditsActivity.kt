@@ -5,8 +5,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.mushroomclassifier.data.repository.LicenseRepository
+import com.example.mushroomclassifier.data.repository.MushroomRepository
 
 class CreditsActivity : AppCompatActivity() {
+    private lateinit var licenseRepository: LicenseRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,5 +23,8 @@ class CreditsActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        licenseRepository = LicenseRepository()
+        val licenses = licenseRepository.getAllLicenses(this)
+    
     }
 }
