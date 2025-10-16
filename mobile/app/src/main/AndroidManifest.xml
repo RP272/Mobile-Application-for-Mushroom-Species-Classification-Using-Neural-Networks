@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MushroomClassifier">
         <activity
+            android:name=".CreditsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
