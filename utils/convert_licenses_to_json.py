@@ -17,6 +17,7 @@ for index, row in dfs.iterrows():
         "source2URL": row["source2"] if len(row["source2"]) > 0 else "",
         "source3URL": row["source3"] if len(row["source3"]) > 0 else "",
         "source4URL": row["source4"] if len(row["source4"]) > 0 else "",
+        "author": row["resource_author"] if len(row["resource_author"]) > 0 else "",
     })
 
 with open("licenses.json", "w") as f:
