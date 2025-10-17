@@ -33,6 +33,7 @@ class LicenseAdapter(private val items: List<LicenseData>) :
         val author: TextView = itemView.findViewById(R.id.author)
         val licenseCardMain: CardView = itemView.findViewById(R.id.licenseCardMain)
         val resourceInformation: LinearLayout = itemView.findViewById(R.id.resourceInformation)
+        val sourceLabel: TextView = itemView.findViewById(R.id.sourceLabel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LicenseViewHolder {
@@ -44,9 +45,7 @@ class LicenseAdapter(private val items: List<LicenseData>) :
     override fun onBindViewHolder(holder: LicenseViewHolder, position: Int) {
         val item = items[position]
 
-        if(item.resourceName.equals("Edibility icon")){
-            print("jajo")
-        }
+        holder.sourceLabel.isVisible = false
 
         if(!item.resourceName.isEmpty()){
             holder.resourceName.text = item.resourceName
@@ -77,28 +76,32 @@ class LicenseAdapter(private val items: List<LicenseData>) :
         }
 
         if(!item.source1URL?.isEmpty()!!){
-            holder.source1URL.text = "Source 1: ${item.source1URL}"
+            holder.sourceLabel.isVisible = true
+            holder.source1URL.text = "\u2022 ${item.source1URL}"
             holder.source1URL.isVisible = true
         }else{
             holder.source1URL.isVisible = false
         }
 
         if(!item.source2URL?.isEmpty()!!){
-            holder.source2URL.text = "Source 2: ${item.source2URL}"
+            holder.sourceLabel.isVisible = true
+            holder.source2URL.text = "\u2022 ${item.source2URL}"
             holder.source2URL.isVisible = true
         }else{
             holder.source2URL.isVisible = false
         }
 
         if(!item.source3URL?.isEmpty()!!){
-            holder.source3URL.text = "Source 3: ${item.source3URL}"
+            holder.sourceLabel.isVisible = true
+            holder.source3URL.text = "\u2022 ${item.source3URL}"
             holder.source3URL.isVisible = true
         }else{
             holder.source3URL.isVisible = false
         }
 
         if(!item.source4URL?.isEmpty()!!){
-            holder.source4URL.text = "Source 4: ${item.source4URL}"
+            holder.sourceLabel.isVisible = true
+            holder.source4URL.text = "\u2022 ${item.source4URL}"
             holder.source4URL.isVisible = true
         }else{
             holder.source4URL.isVisible = false

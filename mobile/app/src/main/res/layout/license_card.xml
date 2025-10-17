@@ -75,6 +75,15 @@
                 />
 
             <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/sourceLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sources: "
+                android:textColor="@color/primary"
+                android:visibility="gone"
+            />
+            <TextView
                 android:id="@+id/source1URL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
