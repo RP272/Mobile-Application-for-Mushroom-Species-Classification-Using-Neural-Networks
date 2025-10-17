@@ -3,87 +3,113 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:backgroundTint="#F0F0F0">
+    android:backgroundTint="#F0F0F0"
+    android:id="@+id/licenseCardMain">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="20dp"
-        >
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/resourceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary"
-            android:textAlignment="center"
-            android:textSize="24sp"
             android:fontFamily="@font/autumn_fall"
-            />
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/resourceURL"
+        <LinearLayout
+            android:id="@+id/resourceInformation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="24dp"
+            >
 
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/resourceURL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/resourceLicense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/licenseURL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/resourceLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/resourceSiteURL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/licenseURL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/source1URL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/resourceSiteURL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/source2URL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/source1URL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/source3URL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/source2URL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
-        <TextView
-            android:id="@+id/source4URL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/source3URL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
 
+            <TextView
+                android:id="@+id/source4URL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textColor="@color/primary"
+                android:visibility="gone"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 
